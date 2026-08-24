@@ -1,0 +1,34 @@
+{
+  "sessions": [
+    {
+      "token": "262fe79d4f5ce3d45e4a9a66b8f9c6737f9ab390d2e2fc798fbaa57c29b8c50c",
+      "accountId": "4aa10c67-f8bb-4221-8c27-d9b7ab5d3f41",
+      "createdAt": 1787517287033,
+      "expiresAt": 1788122087033
+    },
+    {
+      "token": "1871d5e18edfff93902c2324fc39b600e820ec5ddc62443c39a72f7b0090cc6a",
+      "accountId": "4aa10c67-f8bb-4221-8c27-d9b7ab5d3f41",
+      "createdAt": 1787528175692,
+      "expiresAt": 1788132975692
+    },
+    {
+      "token": "50dfb36e481f2f44b0b9f2678026ffd5f7c439b88f7df6cdebaf2293827ab455",
+      "accountId": "9d52bc72-326a-4ed5-81cf-8013d9ce3e2c",
+      "createdAt": 1787528228291,
+      "expiresAt": 1788133028291
+    },
+    {
+      "token": "e2315ea4b92f267a27db5f41047efd360700605a09295918f9609ea5237cd764",
+      "accountId": "4aa10c67-f8bb-4221-8c27-d9b7ab5d3f41",
+      "createdAt": 1787529627268,
+      "expiresAt": 1788134427268
+    },
+    {
+      "token": "7ede8c2301f73bfe70b92315d9d11a65c7976ee77ce42edf2be7a6a8507757e0",
+      "accountId": "4aa10c67-f8bb-4221-8c27-d9b7ab5d3f41",
+      "createdAt": 1787529789479,
+      "expiresAt": 1788134589479
+    }
+  ]
+}

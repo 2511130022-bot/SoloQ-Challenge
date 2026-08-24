@@ -1,0 +1,21 @@
+{
+  "shells": [
+    {
+      "id": "8e337759-541a-4bdb-b9ae-bd1bac9df59f",
+      "senderParticipantId": "bryanpro",
+      "senderName": "Bryanpro",
+      "targetParticipantId": "batman-bugha",
+      "targetName": "Batman Bugha",
+      "selectedColor": "blue",
+      "correctColor": "red",
+      "correct": false,
+      "difficulty": "hard",
+      "challenge": {
+        "id": "random_runes",
+        "title": "📜 Runas aleatorias",
+        "description": "Debes utilizar las runas seleccionadas por la ruleta."
+      },
+      "createdAt": "2026-08-23T20:49:25.138Z"
+    }
+  ]
+}

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LoL Tournament — Clasificación</title>
+  <meta name="description" content="Mini torneo de League of Legends con clasificación, LP, victorias, derrotas y winrate." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="loginScreen" class="login-screen">
+
+    <div class="login-panel">
+
+        <div class="login-zombie">
+    <img
+        src="/assets/zombidito.png"
+        alt="Zombie detective"
+    >
+</div>
+
+        <h1>TORNEO LOL</h1>
+
+        <p class="login-subtitle">
+            INICIAR SESIÓN
+        </p>
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label>
+                    USUARIO
+                </label>
+
+                <input
+                    type="text"
+                    id="loginUsername"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>
+                    CONTRASEÑA
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="pvz-button"
+            >
+                ENTRAR
+            </button>
+
+        </form>
+
+        <div
+            id="loginError"
+            class="login-error"
+        ></div>
+
+    </div>
+
+</div>
+<section
+    id="blueShellSection"
+    class="blue-shell-section"
+>
+
+    <div class="blue-shell-header">
+
+        <div>
+
+            <h2>
+                🔵 BLUE SHELL
+            </h2>
+
+            <p>
+                Envía un reto al rival.
+            </p>
+
+        </div>
+
+        <div
+            id="blueShellCooldown"
+            class="blue-shell-cooldown"
+        >
+            COMPROBANDO...
+        </div>
+
+    </div>
+
+
+    <div class="blue-shell-target">
+
+        <h3>
+            ELEGIR OBJETIVO
+        </h3>
+
+        <div
+            id="targetPlayers"
+            class="target-players"
+        ></div>
+
+    </div>
+
+
+    <div
+        id="blueShellArena"
+        class="blue-shell-arena hidden"
+    >
+
+        <h3>
+            ELIGE UNA CARTA
+        </h3>
+
+        <p>
+            Una de ellas contiene el destino de tu rival.
+        </p>
+
+        <div class="shell-cards">
+
+            <button
+                class="shell-card blue-card"
+                data-color="blue"
+            >
+
+                <div class="card-symbol">
+                    🔵
+                </div>
+
+                <span>
+                    AZUL
+                </span>
+
+            </button>
+
+
+            <button
+                class="shell-card red-card"
+                data-color="red"
+            >
+
+                <div class="card-symbol">
+                    🔴
+                </div>
+
+                <span>
+                    ROJA
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+<div
+    id="blueShellResult"
+    class="blue-shell-modal hidden"
+>
+
+    <div class="blue-shell-result-panel">
+
+        <div class="result-shell">
+            🔵
+        </div>
+
+        <h2>
+            BLUE SHELL ACTIVADA
+        </h2>
+
+        <p
+            id="shellTarget"
+            class="shell-target"
+        ></p>
+
+        <div
+            id="shellChallenge"
+            class="shell-challenge"
+        >
+
+            <div
+                id="shellDifficulty"
+                class="shell-difficulty"
+            ></div>
+
+            <h3
+                id="shellChallengeTitle"
+            ></h3>
+
+            <p
+                id="shellChallengeDescription"
+            ></p>
+
+        </div>
+
+        <button
+            id="closeShellResult"
+            class="pvz-button"
+        >
+            ACEPTAR RETO
+        </button>
+
+    </div>
+
+</div>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">🏆</div>
+        <div>
+          <div class="brand-title">SoloQ Challenge</div>
+          <div class="brand-subtitle">SEASON 1</div>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a class="active" href="#clasificacion" data-nav="clasificacion">POSICIONES</a>
+        <a href="#premios" data-nav="premios">PREMIOS</a>
+      </nav>
+
+      <div class="challenge-timer" id="challengeTimer">
+  <span class="timer-label">INICIO DEL TORNEO</span>
+  <strong id="countdown">--:--:--:--</strong>
+</div>
+
+      <div class="update-status">
+        <span>ÚLTIMA ACTUALIZACIÓN</span>
+        <strong id="lastUpdate">--:--</strong>
+        <button id="refreshBtn" class="refresh-btn" title="Actualizar" aria-label="Actualizar datos">↻</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="clasificacion" class="hero-section">
+        <div class="hero-kicker">SOLOQ CHALLENGE</div>
+        <h1>CLASIFICACIÓN GENERAL</h1>
+        <div class="title-decoration" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </section>
+
+      <section id="leaderCard" class="leader-card" aria-label="Líder actual">
+        <div class="leader-info">
+          <div class="section-label">LÍDER ACTUAL</div>
+          <div class="leader-line">
+            <div class="leader-position">1</div>
+            <div>
+              <div class="leader-name" id="leaderName">BRYAN</div>
+              <div class="leader-tag" id="leaderTag">#LAS</div>
+            </div>
+          </div>
+          <div class="leader-rank-row">
+            <span class="rank-badge" id="leaderRank">MASTER I</span>
+            <span class="divider"></span>
+            <strong id="leaderLp">358 LP</strong>
+          </div>
+        </div>
+
+        <div class="leader-champion">
+          <div class="champion-copy">
+            <div class="section-label">CAMPEÓN MÁS USADO</div>
+            <div class="champion-name" id="leaderChampionName">YASUO</div>
+            <div class="champion-meta" id="leaderChampionMeta">22 PARTIDAS (68.2% WINRATE)</div>
+          </div>
+          <img id="leaderChampionImage" class="champion-art" alt="Campeón más usado del líder" />
+        </div>
+      </section>
+
+      <section class="standings-card" aria-label="Tabla de posiciones">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th class="col-pos">#</th>
+                <th class="col-summoner">INVOCADOR</th>
+                <th class="col-tag">TAGLINE</th>
+                <th class="col-elo">ELO</th>
+                <th class="col-lp">LP</th>
+                <th class="col-wins">VICTORIAS</th>
+                <th class="col-losses">DERROTAS</th>
+                <th class="col-winrate">WINRATE</th>
+                <th class="col-trend">TENDENCIA</th>
+              </tr>
+            </thead>
+            <tbody id="standingsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="premios" class="prizes-section" hidden aria-label="Premios del torneo">
+        <div class="prizes-backdrop" aria-hidden="true"></div>
+        <div class="prizes-overlay"></div>
+
+        <div class="prizes-content">
+          <div class="prizes-countdown-card">
+            <span>EL TORNEO COMIENZA EN</span>
+            <strong id="prizeCountdown">--:--:--:--</strong>
+            <small>24 DE AGOSTO DE 2026 · HORA PERÚ</small>
+          </div>
+
+          <div class="prizes-heading">
+            <div class="hero-kicker">SOLOQ CHALLENGE</div>
+            <h2>PREMIOS DEL TORNEO</h2>
+            <p>Dos reconocimientos para cerrar la competencia con estilo.</p>
+          </div>
+
+          <div class="prizes-grid">
+            <article class="prize-card prize-first">
+              <div class="prize-place">1.er LUGAR</div>
+              <div class="prize-icon">🏆</div>
+              <h3>S/ 300</h3>
+              <p>Premio en efectivo para el campeón del torneo.</p>
+            </article>
+
+            <article class="prize-card prize-second">
+              <div class="prize-place">2.º LUGAR</div>
+              <div class="prize-icon">🥈</div>
+              <h3>HONOR + EXPERIENCIA</h3>
+              <p>El orgullo de haber participado en el torneo y la experiencia ganada durante la competencia.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="playerProfile" class="player-profile-section" hidden>
+
+  <button id="backToLeaderboard" class="back-button">
+    ← VOLVER A LA CLASIFICACIÓN
+  </button>
+
+  <div class="profile-header-card">
+
+    <div class="profile-main">
+
+      <img
+        id="profileIcon"
+        class="profile-large-icon"
+        src=""
+        alt="Icono del jugador"
+      >
+
+      <div>
+        <div class="section-label">PERFIL DEL PARTICIPANTE</div>
+
+        <h2 id="profileName">
+          JUGADOR
+        </h2>
+
+        <span id="profileTag">
+          #LAS
+        </span>
+      </div>
+
+    </div>
+
+    <div class="profile-rank">
+
+      <div class="profile-rank-name" id="profileRank">
+        UNRANKED
+      </div>
+
+      <div class="profile-lp" id="profileLp">
+        0 LP
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ESTADÍSTICAS GENERALES -->
+
+  <div class="profile-stats-grid">
+
+    <div class="profile-stat">
+      <strong id="profileWins">0</strong>
+      <span>VICTORIAS</span>
+    </div>
+
+    <div class="profile-stat">
+      <strong id="profileLosses">0</strong>
+      <span>DERROTAS</span>
+    </div>
+
+    <div class="profile-stat">
+      <strong id="profileWinrate">0%</strong>
+      <span>WINRATE</span>
+    </div>
+
+    <div class="profile-stat">
+      <strong id="profileGames">0</strong>
+      <span>PARTIDAS</span>
+    </div>
+
+    <div class="profile-stat">
+      <strong id="profileKda">0.00</strong>
+      <span>KDA</span>
+    </div>
+
+    <div class="profile-stat">
+      <strong id="profileCs">0</strong>
+      <span>CS PROMEDIO</span>
+    </div>
+
+  </div>
+
+
+  <!-- ANÁLISIS -->
+
+  <div class="profile-analysis-card">
+
+    <div class="section-label">
+      ANÁLISIS DEL JUGADOR
+    </div>
+
+    <h3 id="profileAnalysisTitle">
+      ANÁLISIS GENERAL
+    </h3>
+
+    <p id="profileAnalysis">
+      Analizando estadísticas...
+    </p>
+
+  </div>
+
+
+  <!-- CAMPEONES -->
+
+  <div class="profile-section-card">
+
+    <div class="section-label">
+      CAMPEONES MÁS JUGADOS
+    </div>
+
+    <div id="championStats" class="champion-stats-grid">
+    </div>
+
+  </div>
+
+
+  <!-- HISTORIAL -->
+
+  <div class="profile-section-card">
+
+    <div class="section-label">
+      HISTORIAL DE PARTIDAS
+    </div>
+
+    <div id="matchHistory" class="match-history">
+    </div>
+
+  </div>
+
+</section>
+
+<section id="matchDetails" class="match-details-section" hidden>
+
+  <button id="backToProfile" class="back-button">
+    ← VOLVER AL PERFIL
+  </button>
+
+  <div class="match-detail-header">
+
+    <div>
+      <div class="section-label">
+        DETALLE DE PARTIDA
+      </div>
+
+      <h2 id="matchResult">
+        VICTORIA
+      </h2>
+
+      <span id="matchDuration">
+        00:00
+      </span>
+    </div>
+
+    <div class="match-detail-champion">
+
+      <img
+        id="matchChampionImage"
+        src=""
+        alt="Campeón"
+      >
+
+      <div>
+        <strong id="matchChampionName">
+          CAMPEÓN
+        </strong>
+
+        <span id="matchKda">
+          0 / 0 / 0
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="match-stats-grid">
+
+    <div>
+      <strong id="matchKills">0</strong>
+      <span>ASESINATOS</span>
+    </div>
+
+    <div>
+      <strong id="matchDeaths">0</strong>
+      <span>MUERTES</span>
+    </div>
+
+    <div>
+      <strong id="matchAssists">0</strong>
+      <span>ASISTENCIAS</span>
+    </div>
+
+    <div>
+      <strong id="matchCs">0</strong>
+      <span>CS</span>
+    </div>
+
+    <div>
+      <strong id="matchGold">0</strong>
+      <span>ORO</span>
+    </div>
+
+    <div>
+      <strong id="matchVision">0</strong>
+      <span>VISIÓN</span>
+    </div>
+
+  </div>
+
+
+  <div class="match-teams">
+
+    <div class="team-card victory-team">
+
+      <h3>
+        VICTORIA
+      </h3>
+
+      <div id="winningTeam">
+      </div>
+
+    </div>
+
+
+    <div class="team-card defeat-team">
+
+      <h3>
+        DERROTA
+      </h3>
+
+      <div id="losingTeam">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="match-items-card">
+
+    <div class="section-label">
+      OBJETOS Y RUNAS
+    </div>
+
+    <div id="matchItems">
+    </div>
+
+  </div>
+
+</section>
+
+      <section class="summary-grid" id="estadisticas">
+        <div class="summary-card">
+          <div class="summary-icon purple">♟</div>
+          <div>
+            <div class="summary-value" id="playersCount">10</div>
+            <div class="summary-label">JUGADORES<br>EN EL TORNEO</div>
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon blue">⚔</div>
+          <div>
+            <div class="summary-value" id="matchesCount">128</div>
+            <div class="summary-label">PARTIDAS<br>ANALIZADAS</div>
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon gold">🏆</div>
+          <div>
+            <div class="summary-value season">TEMPORADA 1</div>
+            <div class="summary-label">EN CURSO</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="acerca" class="legal-card">
+        <div class="legal-title">SOBRE EL TORNEO</div>
+        <p>
+          Clasificación comunitaria basada en los datos mostrados por League of Legends. Los datos se actualizan desde el backend de la aplicación.
+        </p>
+        <p class="riot-legal">
+          LoL Tournament no está respaldado por Riot Games y no refleja las opiniones o puntos de vista de Riot Games ni de ninguna persona oficialmente involucrada en la producción o gestión de las propiedades de Riot Games. Riot Games y todas las propiedades asociadas son marcas comerciales o marcas registradas de Riot Games, Inc.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <span>SoloQ Challenge © 2026 | Torneo SoloQ</span>
+      <span>DATOS Y RECURSOS DE LEAGUE OF LEGENDS</span>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

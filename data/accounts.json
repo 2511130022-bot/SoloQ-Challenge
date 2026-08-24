@@ -1,0 +1,26 @@
+{
+  "accounts": [
+    {
+      "id": "4aa10c67-f8bb-4221-8c27-d9b7ab5d3f41",
+      "username": "Bryan",
+      "passwordHash": "ef81c799a45cb59063e3c9b8a84aba6b4f86157a63aa67dbf028c8805bb5359af09d6296d7d480136983f53792d87a3872619cdb27f9f47aad554f85760b807c",
+      "passwordSalt": "9e013482c2fca9bfad9f59fabb0fb864",
+      "participantId": "bryanpro",
+      "gameName": "Bryanpro",
+      "tagLine": "007",
+      "blueShellLastSentAt": "2026-08-23T20:49:25.140Z",
+      "createdAt": "2026-08-23T12:30:01.540Z"
+    },
+    {
+      "id": "9d52bc72-326a-4ed5-81cf-8013d9ce3e2c",
+      "username": "Diego",
+      "passwordHash": "9258e8becb7983c115b4ae075f2466e59909e545fbe8cad3cbf5d559788be47b68a9280fcbcb77a6fd9a418cdc0aa51263acc4da6a5b1a0eb9302b1b7793c784",
+      "passwordSalt": "6aef089fe59a19a28414ee21301ab295",
+      "participantId": "batman-bugha",
+      "gameName": "Batman Bugha",
+      "tagLine": "JCRG",
+      "blueShellLastSentAt": null,
+      "createdAt": "2026-08-23T12:30:13.764Z"
+    }
+  ]
+}
