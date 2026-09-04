@@ -9,7 +9,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+<audio
+  id="winnerMusic"
+  src="assets/The loser has to fall.mp3"
+  preload="auto">
+</audio>
 <body>
   <div id="loginScreen" class="login-screen">
 
@@ -340,30 +346,93 @@
           </div>
         </div>
       </section>
-      <section id="ganador" class="winner-section">
-      <div class="winner-backdrop" aria-hidden="true"></div>
- 
-        <div class="winner-content">
-          <div class="hero-kicker">SOLOQ CHALLENGE</div>
-          <h2>The winner takes it all!🗣️🗣️</h2>
-          <div class="winner-card">
-            <div class="winner-icon">🏆</div>
-            <div class="winner-info">
-              <strong id="winnerName">Batman Bugha</strong>
-              <span id="winnerTag">#JCRG</span>
-        
-            </div>
-          </div>
-          <div class="winner-card-2">
-            <div class="winner-icon">😔👊</div>
-            <div class="winner-info">
-              <strong id="winnerName">Bryanpro</strong>
-              <span id="winnerTag">#007</span>
-        
-            </div>
-          </div>
-        </div>
-      </section>
+      <section id="ganador" class="winner-section" hidden>
+
+  <div class="winner-backdrop" aria-hidden="true"></div>
+
+  <div class="winner-overlay" aria-hidden="true"></div>
+
+  <!-- Partículas de celebración -->
+  <div class="winner-particles" aria-hidden="true">
+    <span>★</span>
+    <span>✦</span>
+    <span>★</span>
+    <span>✦</span>
+    <span>★</span>
+    <span>✦</span>
+    <span>★</span>
+    <span>✦</span>
+    <span>★</span>
+    <span>✦</span>
+    <span>★</span>
+    <span>✦</span>
+  </div>
+
+  <div class="winner-content">
+
+    <div class="hero-kicker winner-kicker">
+      SOLOQ CHALLENGE
+    </div>
+
+    <h2 class="winner-title">
+      The winner takes it all! 🗣️🗣️
+    </h2>
+
+    <div class="winner-trophy">
+      🏆
+    </div>
+
+    <div class="winner-card">
+
+      <div class="winner-icon">
+        🏆
+      </div>
+
+      <div class="winner-info">
+
+        <strong id="winnerName">
+          Batman Bugha
+        </strong>
+
+        <span id="winnerTag">
+          #JCRG
+        </span>
+
+        <small>
+          CAMPEÓN
+        </small>
+
+      </div>
+
+    </div>
+
+    <div class="winner-card-2">
+
+      <div class="winner-icon">
+        😔👊
+      </div>
+
+      <div class="winner-info">
+
+        <strong>
+          Bryanpro
+        </strong>
+
+        <span>
+          #007
+        </span>
+
+        <small>
+          SEGUNDO LUGAR
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
       <section id="playerProfile" class="player-profile-section" hidden>
 

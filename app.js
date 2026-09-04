@@ -1804,32 +1804,177 @@ function average(values) {
 
 function setMainView(view) {
 
-  const leaderboard = document.getElementById("clasificacion");
-  const standings = document.querySelector(".standings-card");
-  const summary = document.querySelector(".summary-grid");
-  const legal = document.querySelector(".legal-card");
-  const profile = document.getElementById("playerProfile");
-  const details = document.getElementById("matchDetails");
-  const prizes = document.getElementById("premios");
-  const winner =document.getElementById("ganador");
+  const leaderboard =
+    document.getElementById("clasificacion");
 
-  const isPrizes = view === "premios";
-  const isLeaderboard = view === "clasificacion";
-  const isWinner = view === "ganador";
+  const standings =
+    document.querySelector(".standings-card");
 
-  if (profile) profile.hidden = true;
-  if (details) details.hidden = true;
+  const summary =
+    document.querySelector(".summary-grid");
 
-  if (leaderboard) leaderboard.style.display = isLeaderboard ? "" : "none";
-  if (standings) standings.style.display = isLeaderboard ? "" : "none";
-  if (summary) summary.style.display = isLeaderboard ? "" : "none";
-  if (legal) legal.style.display = isLeaderboard ? "" : "none";
-  if (prizes) prizes.hidden = !isPrizes;
-  if (winner) winner.hidden = !isWinner;
+  const legal =
+    document.querySelector(".legal-card");
 
-  document.querySelectorAll(".main-nav a[data-nav]").forEach(link => {
-    link.classList.toggle("active", link.dataset.nav === view);
-  });
+  const profile =
+    document.getElementById("playerProfile");
+
+  const details =
+    document.getElementById("matchDetails");
+
+  const prizes =
+    document.getElementById("premios");
+
+  const winner =
+    document.getElementById("ganador");
+
+
+  const isPrizes =
+    view === "premios";
+
+  const isLeaderboard =
+    view === "clasificacion";
+
+  const isWinner =
+    view === "ganador";
+
+
+  /* ----------------------------------------------------------
+     OCULTAR OTRAS SECCIONES
+     ---------------------------------------------------------- */
+
+  if (profile)
+    profile.hidden = true;
+
+  if (details)
+    details.hidden = true;
+
+
+  if (leaderboard)
+    leaderboard.style.display =
+      isLeaderboard ? "" : "none";
+
+  if (standings)
+    standings.style.display =
+      isLeaderboard ? "" : "none";
+
+  if (summary)
+    summary.style.display =
+      isLeaderboard ? "" : "none";
+
+  if (legal)
+    legal.style.display =
+      isLeaderboard ? "" : "none";
+
+  if (prizes)
+    prizes.hidden =
+      !isPrizes;
+
+  if (winner)
+    winner.hidden =
+      !isWinner;
+
+
+  /* ----------------------------------------------------------
+     PESTAÑA GANADOR
+     ---------------------------------------------------------- */
+
+  if (isWinner && winner) {
+
+    /* Reiniciar animación */
+
+    winner.classList.remove(
+      "winner-enter"
+    );
+
+    /*
+     * requestAnimationFrame permite que el navegador
+     * registre el cambio antes de volver a añadir
+     * la clase.
+     */
+
+    requestAnimationFrame(() => {
+
+      requestAnimationFrame(() => {
+
+        winner.classList.add(
+          "winner-enter"
+        );
+
+      });
+
+    });
+
+
+    /* --------------------------------------------------------
+       REPRODUCIR MÚSICA
+       -------------------------------------------------------- */
+
+    const winnerMusic =
+      document.getElementById(
+        "winnerMusic"
+      );
+
+    if (winnerMusic) {
+
+      winnerMusic.currentTime = 0;
+
+      winnerMusic
+        .play()
+        .catch(error => {
+
+          console.warn(
+            "[WINNER MUSIC]",
+            "El navegador bloqueó la reproducción:",
+            error
+          );
+
+        });
+
+    }
+
+  }
+
+
+  /* ----------------------------------------------------------
+     DETENER MÚSICA AL SALIR
+     ---------------------------------------------------------- */
+
+  else {
+
+    const winnerMusic =
+      document.getElementById(
+        "winnerMusic"
+      );
+
+    if (winnerMusic) {
+
+      winnerMusic.pause();
+
+      winnerMusic.currentTime = 0;
+
+    }
+
+  }
+
+
+  /* ----------------------------------------------------------
+     NAVEGACIÓN ACTIVA
+     ---------------------------------------------------------- */
+
+  document
+    .querySelectorAll(
+      ".main-nav a[data-nav]"
+    )
+    .forEach(link => {
+
+      link.classList.toggle(
+        "active",
+        link.dataset.nav === view
+      );
+
+    });
+
 }
 
 function setupMainNavigation() {
