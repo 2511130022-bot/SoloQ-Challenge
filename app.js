@@ -3,7 +3,7 @@
 // ============================================================
 
 const API_BASE = "";
-const TOURNAMENT_TARGET = "2026-08-24T00:00:00-05:00";
+const TOURNAMENT_TARGET = "2026-09-02T00:00:00-05:00";
 
 let currentPlayer = null;
 let currentMatch = null;
@@ -1811,9 +1811,11 @@ function setMainView(view) {
   const profile = document.getElementById("playerProfile");
   const details = document.getElementById("matchDetails");
   const prizes = document.getElementById("premios");
+  const winner =document.getElementById("ganador");
 
   const isPrizes = view === "premios";
   const isLeaderboard = view === "clasificacion";
+  const isWinner = view === "ganador";
 
   if (profile) profile.hidden = true;
   if (details) details.hidden = true;
@@ -1823,6 +1825,7 @@ function setMainView(view) {
   if (summary) summary.style.display = isLeaderboard ? "" : "none";
   if (legal) legal.style.display = isLeaderboard ? "" : "none";
   if (prizes) prizes.hidden = !isPrizes;
+  if (winner) winner.hidden = !isWinner;
 
   document.querySelectorAll(".main-nav a[data-nav]").forEach(link => {
     link.classList.toggle("active", link.dataset.nav === view);
